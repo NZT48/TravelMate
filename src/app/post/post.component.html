@@ -1,0 +1,36 @@
+<div id="publications">
+    <div class="item-publication" *ngFor="let post of posts">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="image-user pull-left">
+                    <a href="#">
+                        <img src="../../assets/user.png" class="avatar-default" />
+                    </a>
+                </div>
+                <div>
+                    <span class="username">
+                        {{post.user.name + ' '+ post.user.surname}}
+                    </span>
+                    &nbsp;|&nbsp;
+                    <span class="date">
+                        {{ (post.created_at | amFromUnix) | amTimeAgo }}
+                    </span>
+                    &nbsp;|&nbsp;
+                    <span class="username">
+                        {{post.destination}}
+                    </span>
+                </div>
+                <h4 class="publication-text pull-left">
+                    {{post.text}}
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 text-center" *ngIf="posts && posts.length">
+    <p>
+        <button class="btn btn-success" (click)="viewMore()" *ngIf="!noMore">
+            See more posts
+        </button>
+    </p>
+</div>

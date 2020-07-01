@@ -1,0 +1,75 @@
+<div class="col-lg-4 sidebar-32">
+    <h1 class="h1-strong">Hello, {{identity.name}}</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div id="user-card" class="col-lg-4 panel panel-default pull-left">
+            <div class="avatar pull-left">
+                <img src="../../assets/user.png" />
+            </div>
+            <div class="name-surname pull-left">
+                <a [routerLink]="['/profil', identity._id]" class="username">
+                    {{identity.name + ' ' + identity.surname}}
+                </a>
+                <p class="nickname">
+                    {{identity.nick}}
+                </p>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="stats" *ngIf="stats">
+                <div class="following-data">
+                    <a [routerLink]="['/following', identity._id, 1]">
+                        <span class="label-stats">
+                            Following
+                        </span>
+                        <span class="number-stats">
+                            {{stats.following}}
+                        </span>
+                    </a>
+                </div>
+                <div class="following-data">
+                    <a [routerLink]="['/followed', identity._id, 1]">
+                        <span class="label-stats">
+                            Followers
+                        </span>
+                        <span class="number-stats">
+                            {{stats.followed}}
+                        </span>
+                    </a>
+                </div>
+                <div class="following-data">
+                    <a [routerLink]="['/profil', identity._id]">
+                        <span class="label-stats">
+                            Posts
+                        </span>
+                        <span class="number-stats">
+                            {{stats.posts}}
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="new-publication" class="col-lg-4 pull-left panel panel-default">
+            <div class="alert alert-success" *ngIf="status == 'success'">
+                Posted successfully
+            </div>
+            <div class="alert alert-danger" *ngIf="status == 'error'">
+                Could not post
+            </div>
+            <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)" class="col-lg-10">
+                <p>
+                    <label>What would you like to visit:</label>
+                    <input type="text" name="dest" #dest="ngModel" [(ngModel)]="post.destination"
+                        placeholder="Destination" class="form-control">
+                    <textarea name="text" placeholder="About" #text="ngModel" [(ngModel)]="post.text"
+                        class="form-control" required></textarea>
+                    <span *ngIf="!text.valid && text.touched && dest.touched && !dest.valid">The text is
+                        mandatory</span>
+                </p>
+                <input type="submit" value="Submit" class="btn btn-success" [disabled]="!newPubForm.form.valid" />
+            </form>
+        </div>
+    </div>
+</div>

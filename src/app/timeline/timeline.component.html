@@ -1,0 +1,152 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <app-sidebar (sended)="refresh($event)"></app-sidebar>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="h1-strong">{{title}}</h1>
+            <div id="publications" *ngIf="!dest">
+                <div class="item-publication" *ngFor="let post of posts">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="image-user pull-left">
+                                <a href="#">
+                                    <img src="../../assets/user.png" class="avatar-default" />
+                                </a>
+                            </div>
+                            <div>
+                                <a class="username" [routerLink]="['/profil', post.user._id]">
+                                    {{post.user.name + ' '+ post.user.surname}}
+                                </a>
+                                &nbsp;|&nbsp;
+                                <span class="date">
+                                    {{ (post.created_at | amFromUnix) | amTimeAgo }}
+                                </span>
+                                &nbsp;|&nbsp;
+                                <a class="username" [routerLink]="['/timeline', post.destination]">
+                                    {{post.destination}}
+                                </a>
+                            </div>
+                            <hr>
+                            <h4 class="publication-text pull-left">
+                                {{post.text}}
+                            </h4>
+                            <hr>
+                            <div class="pull-right" *ngIf="post.user._id == identity._id">
+                                <a href="#myModal{{post._id}}" role="button" class="btn btn-large btn-danger"
+                                    data-toggle="modal" *ngIf="showImage != post._id">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                                <div id="myModal{{post._id}}" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete the post?</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>If you erase it you will not be able to undo the operation.</p>
+                                                <p>{{post.text}}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                    (click)="deletePost(post._id)">
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center" *ngIf="posts && posts.length">
+                    <p>
+                        <button class="btn btn-success" (click)="viewMore()" *ngIf="!noMore">
+                            See more posts </button>
+                        <button class="btn btn-success btn-sm" (click)="refresh($event)">Update</button>
+                    </p>
+
+                </div>
+            </div>
+            <div id="publications" *ngIf="dest">
+                <div class="item-publication" *ngFor="let post of posts">
+                    <div class="container panel panel-default" *ngIf="dest == post.destination">
+                        <div class="panel-body">
+                            <div class="image-user pull-left">
+                                <a href="#">
+                                    <img src="../../assets/user.png" class="avatar-default" />
+                                </a>
+                            </div>
+                            <div>
+                                <a class="username" [routerLink]="['/profil', post.user._id]">
+                                    {{post.user.name + ' '+ post.user.surname}}
+                                </a>
+                                &nbsp;|&nbsp;
+                                <span class="date">
+                                    {{ (post.created_at | amFromUnix) | amTimeAgo }}
+                                </span>
+                                &nbsp;|&nbsp;
+                                <a class="username" [routerLink]="['/timeline', post.destination]">
+                                    {{post.destination}}
+                                </a>
+                            </div>
+                            <hr>
+                            <h4 class="publication-text pull-left">
+                                {{post.text}}
+                            </h4>
+                            <hr>
+                            <div class="pull-right" *ngIf="post.user._id == identity._id">
+                                <a href="#myModal{{post._id}}" role="button" class="btn btn-large btn-danger"
+                                    data-toggle="modal" *ngIf="showImage != post._id">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                                <div id="myModal{{post._id}}" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete the post?</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>If you erase it you will not be able to undo the operation.</p>
+                                                <p>{{post.text}}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                    (click)="deletePost(post._id)">
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center" *ngIf="posts && posts.length">
+                    <p>
+                        <button class="btn btn-success" (click)="viewMore()" *ngIf="!noMore">
+                            See more posts </button>
+                        <button class="btn btn-success btn-sm" (click)="refresh($event)">Update</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

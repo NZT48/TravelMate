@@ -1,0 +1,56 @@
+<div class="navigation col-lg-12">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header" *ngIf="!identity">
+                <a [routerLink]="['/home']" [routerLinkActive]="['active']" class="navbar-brand">{{title}}</a>
+            </div>
+            <ul class="nav navbar-header" *ngIf="identity">
+                <li>
+                    <a [routerLink]="['/home']" [routerLinkActive]="['active']"><span
+                            class="glyphicon glyphicon-home"></span>&nbsp;Home&nbsp;&nbsp;</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/timeline']" [routerLinkActive]="['active']"><span
+                            class="glyphicon glyphicon-th-list"></span>&nbsp;Timeline&nbsp;&nbsp;</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/users']" [routerLinkActive]="['active']"><span
+                            class="glyphicon glyphicon-user"></span>&nbsp;Users</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-header navbar-right" *ngIf="!identity">
+                <li>
+                    <a [routerLink]="['/login']" [routerLinkActive]="['active']"><span
+                            class="glyphicon glyphicon-log-in"></span>&nbsp;Login&nbsp;&nbsp;</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/register']" [routerLinkActive]="['active']"><span
+                            class="glyphicon glyphicon-user"></span>&nbsp;Register&nbsp;&nbsp;</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-header navbar-right" *ngIf="identity">
+                <li class="avatar">
+                    <img src="../assets/user.png" />
+                </li>
+                <li class="dropdown">
+                    <div>&nbsp;</div>
+                    <a class="dropdown-toggle navbar-default" data-toggle="dropdown" href="#"><span
+                            class="caret">{{identity.name}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a [routerLink]="['/profil', identity._id]"><span class="glyphicon glyphicon-user"></span>My profile</a>
+                        </li>
+                        <li>
+                            <a class="pointer" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>Log out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<router-outlet></router-outlet>
+<hr>
+<div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://www.etf.bg.ac.rs/"> Elektrotehnički fakultet, Univerzitet u Beogradu</a>
+</div>

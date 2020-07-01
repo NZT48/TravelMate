@@ -1,0 +1,90 @@
+<div class="containter move-right">
+    <div class="row">
+        <div class="col">
+            <h1 class="h1-strong">
+                {{title}}
+            </h1>
+            <div id="data-profile" class="container" *ngIf="user">
+                <div class="row">
+                    <div class="col">
+                        <div class="avatar pull-left">
+                            <img src="../../assets/user.png">
+                        </div>
+                        <div class="user-name pull-left">
+                            <div class="label label-default pull-left" *ngIf="followed">
+                                Follows you
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="pull-left">
+                                <p class="name">
+                                    {{user.name + ' ' + user.surname}}
+                                </p>
+                                <p class="nick">
+                                    {{user.nick}}
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="follow" *ngIf="user._id != identity._id">
+                                <button class="btn btn-success" *ngIf="!following" (click)="followUser(user._id)">
+                                    Follow
+                                </button>
+                                <button class="btn btn-primary" *ngIf="following" (click)="unfollowUser(user._id)"
+                                    (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)"
+                                    [class.btn-danger]="user._id == followUserOver">
+                                    <span *ngIf="user._id == followUserOver; else following">
+                                        <span class="glyphicon glyphicon-minus-sign"></span> Stop following
+                                    </span>
+                                    <ng-template #following>
+                                        <span class="glyphicon glyphicon-ok-sign"></span> Following
+                                    </ng-template>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="stats data-profile" *ngIf="stats">
+                            <div class="following-data">
+                                <a [routerLink]="['/following', user._id, 1]">
+                                    <span class="label-stats">
+                                        Following
+                                    </span>
+                                    <span class="number-stats">
+                                        {{stats.following}}
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="following-data">
+                                <a [routerLink]="['/followed', user._id, 1]">
+                                    <span class="label-stats">
+                                        Followed
+                                    </span>
+                                    <span class="number-stats">
+                                        {{stats.followed}}
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="following-data">
+                                <a [routerLink]="['/profil', user._id]">
+                                    <span class="label-stats">
+                                        Posts
+                                    </span>
+                                    <span class="number-stats">
+                                        {{stats.posts}}
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 publications" *ngIf="user">
+            <app-post [user]="user._id"></app-post>
+        </div>
+    </div>
+</div>
