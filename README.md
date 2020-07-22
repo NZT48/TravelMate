@@ -1,27 +1,29 @@
 # TravelMate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+![](./Screenshots/logo.png)
 
-## Development server
+This project was made for course Software Project Management at School of Electrical Engineering, University of Belgrade. TravelMate is a prototype of social network for travellers.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## How to start
 
-## Code scaffolding
+* In tmServer directory:
+```
+npm start
+```
+* In main directory:
+```
+ng serve --open
+```
+* Navigate to http://localhost:4200/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Screenshots of web app
 
-## Build
+![](./Screenshots/sc1.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+![](./Screenshots/sc2.png)
 
-## Running unit tests
+![](./Screenshots/sc3.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![](./Screenshots/sc4.png)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![](./Screenshots/sc5.png)
